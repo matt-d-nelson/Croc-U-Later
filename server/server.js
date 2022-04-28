@@ -11,4 +11,5 @@ app.listen(port, ()=>{
     console.log('server up on:', port);
 });
 
+app.use(express.static('./server/public'));
 app.use('/', calcRouter);
