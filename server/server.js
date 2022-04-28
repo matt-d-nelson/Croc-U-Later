@@ -1,7 +1,7 @@
 //Import modules
 const express = require('express');
 const bodyParser = require('body-parser');
-const calcRouter = require('./modules/calculator');
+const calcRouter = require('./modules/calculator/calculator');
 
 //Constants
 const app = express();

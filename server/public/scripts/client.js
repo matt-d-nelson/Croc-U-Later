@@ -61,7 +61,7 @@ function getPreviousCalculations() {
     }).then(function(response) {
         console.log(response);
         //target output list element
-        const el = $('#previousCalculations');
+        let el = $('#previousCalculations');
         //empty that element
         el.empty();
         //loop through response array
@@ -74,6 +74,10 @@ function getPreviousCalculations() {
                 ${response[i].result}
             </li>`);
         }
+        //target h2 element to display most recent result
+        el = $('#resultOut');
+        el.empty();
+        el.append(response[0].result);
     }).catch(function(err) {
         console.log(err);
         alert('error getting previous operations');
