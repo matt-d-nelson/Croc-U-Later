@@ -1,5 +1,6 @@
 //Import modules
 const express = require('express');
+const bodyParser = require('body-parser');
 const calcRouter = require('./modules/calculator');
 
 //Constants
@@ -12,4 +13,5 @@ app.listen(port, ()=>{
 });
 
 app.use(express.static('./server/public'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', calcRouter);

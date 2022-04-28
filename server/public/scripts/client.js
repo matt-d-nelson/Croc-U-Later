@@ -25,20 +25,40 @@ function clearInputs() {
     $('#numeratorIn').val('');
     //clear denominator input
     $('#denominatorIn').val('');
-    //clear operator property in toCalculate
+    //clear properties in toCalculate
+    toCalculate.numerator = "";
     toCalculate.operator = "";
+    toCalculate.denominator = "";
 }
 
 function calculateOperation() {
     console.log('in calculateOperation');
-
+    //get input values
+    toCalculate.numerator = $('#numeratorIn').val();
+    toCalculate.denominator = $('#denominatorIn').val();
+    console.log('adding', toCalculate);
+    //make post request
+    $.ajax({
+        method: 'POST',
+        url: '/calculate',
+        data: toCalculate
+    }).then(function(response) {
+        console.log('back from POST', response);
+        //update DOM
+        getPreviousCalculations();
+        //clear inputs, innitialize toCalculate
+        clearInputs();
+    }).catch(function(err) {
+        console.log(err);
+        alert('error sending calculation');
+    })
 }
 
 function getPreviousCalculations() {
     $.ajax({
         method: 'GET',
         url: '/calculate'
-    }).then(function( response ) {
+    }).then(function(response) {
         console.log(response);
         //target output list element
         const el = $('#previousCalculations');
