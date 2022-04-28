@@ -3,6 +3,8 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ');
     $('#inputOperators').on('click', '.operatorButtons', defineOperator);
+    $('#clearButton').on('click', clearInputs);
+    $('#calculateButton').on('click', calculateOperation);
 }
 
 let toCalculate = {
@@ -14,5 +16,15 @@ let toCalculate = {
 function defineOperator() {
     console.log('in defineOperator');
     toCalculate.operator = $(this).data('op');
-    console.log(toCalculate);
+}
+
+function clearInputs() {
+    console.log('in clearInputs');
+    $('#numeratorIn').val('');
+    $('#denominatorIn').val('');
+    toCalculate.operator = "";
+}
+
+function calculateOperation() {
+    console.log('in calculateOperation');
 }
