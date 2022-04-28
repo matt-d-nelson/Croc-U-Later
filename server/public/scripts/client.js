@@ -6,7 +6,7 @@ function onReady() {
     $('#inputButtons').on('click', '.valueButtons', defineNumber);
 
     $('#clearButton').on('click', clearInputs);
-    $('#calculateButton').on('click', calculateOperation);
+    $('#calculateButton').on('click', parseOperationString);
     getPreviousCalculations();
 }
 
@@ -49,13 +49,27 @@ function clearInputs() {
     operationString = "";
 }
 
+function parseOperationString() {
+    //split the operationString on the operator
+    let splitOp = operationString.split(toCalculate.operator);
+    //ensure that there are only two values and that they are numbers
+    if (splitOp.length != 2 || isNaN(splitOp[0]) || isNaN(splitOp[0])) {
+        alert('Invalid entry. Please enter two digits separated by one operator.');
+        clearInputs();
+        return;
+    }
+    //set split values in toCalculate object
+    toCalculate.numerator = splitOp[0];
+    toCalculate.denominator = splitOp[1];
+
+    //make server request
+    calculateOperation();
+}
+
 //Server request functions
 
 function calculateOperation() {
     console.log('in calculateOperation');
-    //get input values //to change for stretch goals-----------//
-    toCalculate.numerator = $('#numeratorIn').val();
-    toCalculate.denominator = $('#denominatorIn').val();
     console.log('adding', toCalculate);
     //make post request
     $.ajax({
