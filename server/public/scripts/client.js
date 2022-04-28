@@ -3,33 +3,53 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ');
     $('#inputButtons').on('click', '.operatorButtons', defineOperator);
+    $('#inputButtons').on('click', '.valueButtons', defineNumber);
+
     $('#clearButton').on('click', clearInputs);
     $('#calculateButton').on('click', calculateOperation);
     getPreviousCalculations();
 }
 
+//Global data
 let toCalculate = {
     numerator: "",
     operator: "",
     denominator: ""
 }
+let operationString = "";
+
+//Client side functions
 
 function defineOperator() {
     console.log('in defineOperator');
+    //set the operator in the toCalculate object
     toCalculate.operator = $(this).data('op');
+    //concatinate operation string
+    operationString += $(this).data('op');
+    updateInput();
+}
+
+function defineNumber() {
+    console.log('in defineNumber');
+    operationString += $(this).data('val');
+    updateInput();
+}
+
+function updateInput() {
+    $('#inputDisplay').val(operationString);
 }
 
 function clearInputs() {
     console.log('in clearInputs');
-    //clear numerator input //to change for stretch goals-------//
-    $('#numeratorIn').val('');
-    //clear denominator input 
-    $('#denominatorIn').val('');
-    //clear properties in toCalculate
-    toCalculate.numerator = "";
+    //clear input value
+    $('#inputDisplay').val('');
+    //clear operator in toCalculate
     toCalculate.operator = "";
-    toCalculate.denominator = "";
+    //clear operation string
+    operationString = "";
 }
+
+//Server request functions
 
 function calculateOperation() {
     console.log('in calculateOperation');
