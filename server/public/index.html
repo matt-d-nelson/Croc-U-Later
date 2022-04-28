@@ -13,15 +13,38 @@
     <h1>Croculator</h1>
     <div id="input">
         <input type="number" id="numeratorIn">
-        <div id="inputOperators" >
-            <button class="operatorButtons" data-op="+">+</button>
-            <button class="operatorButtons" data-op="-">-</button>
-            <button class="operatorButtons" data-op="*">*</button>
-            <button class="operatorButtons" data-op="/">/</button>
+        <button id="clearButton">C</button>
+        <div id="inputButtons">
+            <table>
+                <tr>
+                    <td><button class="valueButtons" data-val="7">7</button></td>
+                    <td><button class="valueButtons" data-val="8">8</button></td>
+                    <td><button class="valueButtons" data-val="9">9</button></td>
+                    <td><button class="operatorButtons" data-op="+">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="valueButtons" data-val="4">4</button></td>
+                    <td><button class="valueButtons" data-val="5">5</button></td>
+                    <td><button class="valueButtons" data-val="6">6</button></td>
+                    <td><button class="operatorButtons" data-op="-">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="valueButtons" data-val="4">1</button></td>
+                    <td><button class="valueButtons" data-val="5">2</button></td>
+                    <td><button class="valueButtons" data-val="6">3</button></td>
+                    <td><button class="operatorButtons" data-op="*">*</button></td>
+                </tr>
+                <tr>
+                    <td><button class="valueButtons" data-val="0">0</button></td>
+                    <td><button class="valueButtons" data-val=".">.</button></td>
+                    <td><button id="calculateButton">=</button></td>
+                    <td><button class="operatorButtons" data-op="/">/</button></td>
+                </tr>
+            </table>
         </div>
         <input type="number" id="denominatorIn">
-        <button id="calculateButton">=</button>
-        <button id="clearButton">C</button>
+        
+        
     </div>
     <div id="outputs">
         <h2>Result: <span id="resultOut"></span></h2>

@@ -2,7 +2,7 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('JQ');
-    $('#inputOperators').on('click', '.operatorButtons', defineOperator);
+    $('#inputButtons').on('click', '.operatorButtons', defineOperator);
     $('#clearButton').on('click', clearInputs);
     $('#calculateButton').on('click', calculateOperation);
     getPreviousCalculations();
@@ -21,9 +21,9 @@ function defineOperator() {
 
 function clearInputs() {
     console.log('in clearInputs');
-    //clear numerator input
+    //clear numerator input //to change for stretch goals-------//
     $('#numeratorIn').val('');
-    //clear denominator input
+    //clear denominator input 
     $('#denominatorIn').val('');
     //clear properties in toCalculate
     toCalculate.numerator = "";
@@ -33,7 +33,7 @@ function clearInputs() {
 
 function calculateOperation() {
     console.log('in calculateOperation');
-    //get input values
+    //get input values //to change for stretch goals-----------//
     toCalculate.numerator = $('#numeratorIn').val();
     toCalculate.denominator = $('#denominatorIn').val();
     console.log('adding', toCalculate);
@@ -74,10 +74,12 @@ function getPreviousCalculations() {
                 ${response[i].result}
             </li>`);
         }
-        //target h2 element to display most recent result
-        el = $('#resultOut');
-        el.empty();
-        el.append(response[0].result);
+        if (response.length > 0) {
+            //target h2 element to display most recent result
+            el = $('#resultOut');
+            el.empty();
+            el.append(response[0].result);
+        }
     }).catch(function(err) {
         console.log(err);
         alert('error getting previous operations');
