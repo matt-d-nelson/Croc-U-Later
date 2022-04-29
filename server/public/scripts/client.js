@@ -2,10 +2,13 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('JQ');
+    //input buttons
     $('#inputButtons').on('click', '.operatorButtons', defineOperator);
     $('#inputButtons').on('click', '.valueButtons', defineNumber);
 
+    //execution buttons
     $('#clearButton').on('click', clearInputs);
+    $('#clearHistoryButton').on('click', clearHistory);
     $('#calculateButton').on('click', parseOperationString);
     getPreviousCalculations();
 }
@@ -84,7 +87,7 @@ function calculateOperation() {
         clearInputs();
     }).catch(function(err) {
         console.log(err);
-        alert('error sending calculation');
+        alert('error sending calculation request');
     })
 }
 
@@ -118,4 +121,18 @@ function getPreviousCalculations() {
         console.log(err);
         alert('error getting previous operations');
     });
+}
+
+function clearHistory() {
+    console.log('in clear history');
+    $.ajax({
+        method: 'DELETE',
+        url: '/calculate'
+    }).then(function(response) {
+        console.log('back from DELETE', response);
+        getPreviousCalculations();
+    }).catch(function(err) {
+        console.log(err);
+        alert('error sending delete request');
+    })
 }

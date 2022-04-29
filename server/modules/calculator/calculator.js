@@ -17,6 +17,12 @@ router.post('/calculate', (req, res) => {
     res.sendStatus(200);
 })
 
+router.delete('/calculate', (req, res) => {
+    console.log('calculate DELETE');
+    previousOperations = [];
+    res.sendStatus(200);
+})
+
 //Functions
 function performCalculation(calculation) {
     //declare variable to store result
@@ -44,4 +50,5 @@ function performCalculation(calculation) {
     previousOperations.unshift(calculation);
 }
 
+//Exports
 module.exports = router;
