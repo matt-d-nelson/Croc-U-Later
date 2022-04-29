@@ -28,10 +28,11 @@ let operationString = "";
 
 function defineOperator() {
     console.log('in defineOperator');
+    let currentOperator = $(this).data('op');
     //set the operator in the toCalculate object
-    toCalculate.operator = $(this).data('op');
+    toCalculate.operator = currentOperator;
     //concatinate operation string
-    operationString += $(this).data('op');
+    operationString += currentOperator;
     updateInput();
 }
 
@@ -61,7 +62,7 @@ function parseOperationString() {
     //split the operationString on the operator
     let splitOp = operationString.split(toCalculate.operator);
     //ensure that there are only two values and that they are numbers
-    if (splitOp.length != 2 || isNaN(splitOp[0]) || isNaN(splitOp[0])) {
+    if (splitOp.length != 2 || splitOp.includes('') || isNaN(splitOp[0]) || isNaN(splitOp[0])) {
         alert('Invalid entry. Please enter two digits separated by one operator.');
         clearInputs();
         return;
@@ -69,6 +70,7 @@ function parseOperationString() {
     //set split values in toCalculate object
     toCalculate.numerator = splitOp[0];
     toCalculate.denominator = splitOp[1];
+    console.log('in parse', toCalculate);
 
     //make server request
     calculateOperation();

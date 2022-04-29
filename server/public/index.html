@@ -8,12 +8,16 @@
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="/styles/style.css">
     <title>Croculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Croculator</h1>
-    <div id="input">
+    <h2>Result: <span id="resultOut" class="resultNum"></span></h2>
+    <div id="input" class="inputStyle">
         <input type="text" id="inputDisplay" readonly>
-        <button id="clearButton">C</button>
+        <button id="clearButton" class="clearButton">C</button>
         <div id="inputButtons">
             <table>
                 <tr>
@@ -37,14 +41,14 @@
                 <tr>
                     <td><button class="valueButtons" data-val="0">0</button></td>
                     <td><button class="valueButtons" data-val=".">.</button></td>
-                    <td><button id="calculateButton">=</button></td>
+                    <td><button id="calculateButton" class="equalButton">=</button></td>
                     <td><button class="operatorButtons" data-op="/">/</button></td>
                 </tr>
             </table>
         </div>
     </div>
-    <div id="outputs">
-        <h2>Result: <span id="resultOut"></span></h2>
+    <div id="history" class="historyStyle">
+        
         <button id="clearHistoryButton">Clear History</button>
         <ul id="previousCalculations">
 

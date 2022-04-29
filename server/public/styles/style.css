@@ -1,3 +1,62 @@
+/*-------------------------Global----------------------*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --lightGreen: #A8E2A0;
+    --DarkGreen: #375A33;
+}
+
 body {
     background-color: bisque;
+    font-family: 'Staatliches', sans-serif;
 }
+/*-------------------------Layout & Design Macro----------------------*/
+h1 {
+    /* Layout */
+    text-align: center;
+    padding: 20px;
+    /* Design */
+    font-size: 3rem;
+    background-color: #375A33
+}
+
+h2 {
+   /* Layout */
+   text-align: left;
+   font-size: 2rem;
+   padding-bottom: 30px;
+   padding-left: 20%;
+   padding-top: 120px;
+   /* Design */
+}
+
+.inputStyle {
+   /* Layout */
+   float: left;
+   padding-left: 20%;
+   /* Design */ 
+}
+
+.historyStyle {
+    /* Layout */
+    float: right;
+    padding-right: 20%;
+    /* Design */ 
+}
+/*-------------------------Layout & Design Micro----------------------*/
+    /*----------Inputs----------*/
+
+.valueButtons , .operatorButtons, .equalButton, .clearButton {
+    /* Layout */
+    width: 3rem;
+    height: 2.5rem;
+    /* Design */ 
+    font-family: 'Staatliches', sans-serif;
+    font-size: 1.25rem;
+}
+
+    /*----------History----------*/
