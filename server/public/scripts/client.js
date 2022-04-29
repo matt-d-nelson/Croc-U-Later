@@ -10,6 +10,9 @@ function onReady() {
     $('#clearButton').on('click', clearInputs);
     $('#clearHistoryButton').on('click', clearHistory);
     $('#calculateButton').on('click', parseOperationString);
+
+    $('#previousCalculations').on('click', '.calcHistory', recalculate);
+
     getPreviousCalculations();
 }
 
@@ -46,6 +49,8 @@ function clearInputs() {
     console.log('in clearInputs');
     //clear input value
     $('#inputDisplay').val('');
+    //potentially clear the result element//may make more sense to not
+    //$('#resultOut').empty(); 
     //clear operator in toCalculate
     toCalculate.operator = "";
     //clear operation string
@@ -83,7 +88,7 @@ function calculateOperation() {
         console.log('back from POST', response);
         //update DOM
         getPreviousCalculations();
-        //clear inputs, innitialize toCalculate
+        //clear inputs
         clearInputs();
     }).catch(function(err) {
         console.log(err);
@@ -104,12 +109,11 @@ function getPreviousCalculations() {
         //loop through response array
         for(let i = 0; i < response.length; i++) {
             //append el for each previous operation
-            el.append(`<li>
+            el.append(`<li class="calcHistory" data-id=${i}>
                 ${response[i].numerator} 
                 ${response[i].operator} 
-                ${response[i].denominator} = 
-                ${response[i].result}
-            </li>`);
+                ${response[i].denominator}
+            </li>`); //= ${response[i].result} //removed for stretch goals
         }
         if (response.length > 0) {
             //target h2 element to display most recent result
@@ -131,8 +135,32 @@ function clearHistory() {
     }).then(function(response) {
         console.log('back from DELETE', response);
         getPreviousCalculations();
+        clearInputs();
     }).catch(function(err) {
         console.log(err);
         alert('error sending delete request');
+    })
+}
+
+function recalculate() {
+    //create new object to send that stores the index of the previous calculation
+    let indexToCalculate = {
+        index: Number($(this).data('id'))
+    }
+    console.log('index to recalculate:', indexToCalculate);
+    //send a post request to the server with the index object
+    $.ajax({
+        method: 'POST',
+        url: '/recalculate',
+        data: indexToCalculate
+    }).then(function(response) {
+        console.log('back from GET', response);
+        //append the server's response to the resultOut element
+        el = $('#resultOut');
+        el.empty();
+        el.append(response);
+    }).catch(function(err) {
+        console.log(err);
+        alert('error sending recalculation request');
     })
 }

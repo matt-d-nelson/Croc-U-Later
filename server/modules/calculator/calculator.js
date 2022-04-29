@@ -6,6 +6,8 @@ const router = express.Router();
 let previousOperations = [];
 
 //Router configuration
+
+    //calculate
 router.get('/calculate', (req, res) => {
     console.log('calculate GET');
     res.send(previousOperations);
@@ -21,6 +23,13 @@ router.delete('/calculate', (req, res) => {
     console.log('calculate DELETE');
     previousOperations = [];
     res.sendStatus(200);
+})
+
+    //recalculate
+router.post('/recalculate', (req, res) => {
+    console.log('recalculate GET',req.body);
+    //send the result property of the requested index of the previousOperations array
+    res.send(previousOperations[req.body.index].result);
 })
 
 //Functions
