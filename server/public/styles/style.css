@@ -37,26 +37,35 @@ h2 {
 .inputStyle {
    /* Layout */
    float: left;
-   padding-left: 20%;
+   margin-left: 25%;
+   padding: 20px;
    /* Design */ 
+   border: 3px solid;
+   border-radius: 10px;
 }
 
 .historyStyle {
     /* Layout */
     float: right;
-    padding-right: 20%;
+    margin-right: 25%;
+    padding: 20px;
     /* Design */ 
+    border: 3px solid;
+    border-radius: 10px;
 }
 /*-------------------------Layout & Design Micro----------------------*/
     /*----------Inputs----------*/
 .inputDisplay {
+    /* Layout */
     width: 9.35rem;
     height: 5rem;
     text-align: center;
-    padding-bottom: 0.15rem;
+    padding-bottom: 0.5rem;
     /* Design */ 
     font-family: inherit;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    border-radius: 5px;
+
 }
 
 
@@ -67,6 +76,7 @@ h2 {
     /* Design */ 
     font-family: inherit;
     font-size: 1.25rem;
+    border-radius: 5px;
     /* Animation */
     transition: transform 0.3s ease;
 }
@@ -75,23 +85,67 @@ h2 {
     /* Layout */
     width: 3rem;
     height: 5.1rem;
-    
     /* Design */ 
     font-family: inherit;
     font-size: 1.25rem;
+    border-radius: 5px;
+    /* Animation */
+    transition: transform 0.3s ease;
+}
+    /*----------History----------*/
+.clearHistoryButton {
+    /* Layout */
+    width: 9rem;
+    height: 2.5rem;
+    /* Design */ 
+    font-family: inherit;
+    font-size: 1.25rem;
+    border-radius: 5px;
     /* Animation */
     transition: transform 0.3s ease;
 }
 
+.previousCalculations {
+    /* Layout */
+    width: 9rem;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    /* Design */ 
+    font-family: inherit;
+    font-size: 1.25rem;
+    border: 2px solid;
+}
+.calcHistory {
+    /* Layout */
+    margin: 5px;
+    /* Design */ 
+    border: 1px solid;
+    border-radius: 5px;
+    /* Animation */
+    transition: transform 0.3s ease;
+}
+
+td {
+    border: inherit;
+    margin: inherit;
+    border-radius: inherit;
+    transition: inherit;
+}
+
+/*-------------------------Animation----------------------*/
 .valueButtons:hover  {
     transform: translate(-3px, -3px);
 }
 
 .operatorButtons:hover, .clearButton:hover {
-    transform: translate(3px, 3px);
+    transform: translate(3px, -3px);
 }
 
-.equalButton:hover {
-    transform: scale(1.5);
+.equalButton:hover{
+    transform: scale(1.25);
 }
-    /*----------History----------*/
+
+.calcHistory:hover, .clearHistoryButton:hover  {
+    transform: scale(1.1);
+}

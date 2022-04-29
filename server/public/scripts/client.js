@@ -103,7 +103,7 @@ function getPreviousCalculations() {
         method: 'GET',
         url: '/calculate'
     }).then(function(response) {
-        console.log(response);
+        console.log('back from GET', response);
         //target output list element
         let el = $('#previousCalculations');
         //empty that element
@@ -111,11 +111,11 @@ function getPreviousCalculations() {
         //loop through response array
         for(let i = 0; i < response.length; i++) {
             //append el for each previous operation
-            el.append(`<li class="calcHistory" data-id=${i}>
+            el.append(`<tr class="calcHistory" data-id=${i}><td>
                 ${response[i].numerator} 
                 ${response[i].operator} 
                 ${response[i].denominator}
-            </li>`); //= ${response[i].result} //removed for stretch goals
+            </td></tr>`); //= ${response[i].result} //removed for stretch goals
         }
         if (response.length > 0) {
             //target h2 element to display most recent result
