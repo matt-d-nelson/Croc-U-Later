@@ -78,16 +78,8 @@ function parseOperationString() {
 
 function displayResult(result) {
     el = $('#resultOut');
-
-    
-    //I am not proud of this... This is the only way I've managed to make the animation
-    //happen every time a result is displayed. It works pretty well 
-    el.removeClass('resultNum_animate');
-    setTimeout(function() {
-        el.addClass('resultNum_animate');
-        el.empty();
-        el.append(result);
-    }, 10);
+    el.empty();
+    el.append(`Result: <span class="resultNum_animate">${result}</span>`);
 }
 
 //----------------------Server request functions-----------------------//
