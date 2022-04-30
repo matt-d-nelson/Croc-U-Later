@@ -54,6 +54,12 @@ h2 {
     border-radius: 10px;
 }
 /*-------------------------Layout & Design Micro----------------------*/
+    /*----------Result----------*/
+.resultNum_animate {
+    animation-name: slideIn;
+    animation-duration: 1s;
+}
+
     /*----------Inputs----------*/
 .inputDisplay {
     /* Layout */
@@ -148,4 +154,9 @@ td {
 
 .calcHistory:hover, .clearHistoryButton:hover  {
     transform: scale(1.1);
+}
+
+@keyframes slideIn {
+    from {padding-left: 60%; opacity: 0;}
+    to {padding-left: 0%; opacity: 1;}
 }

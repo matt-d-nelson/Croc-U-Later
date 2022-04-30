@@ -24,7 +24,7 @@ let toCalculate = {
 }
 let operationString = "";
 
-//Client side functions
+//----------------------Client side functions-----------------------//
 
 function defineOperator() {
     console.log('in defineOperator');
@@ -76,7 +76,21 @@ function parseOperationString() {
     calculateOperation();
 }
 
-//Server request functions
+function displayResult(result) {
+    el = $('#resultOut');
+
+    
+    //I am not proud of this... This is the only way I've managed to make the animation
+    //happen every time a result is displayed. It works pretty well 
+    el.removeClass('resultNum_animate');
+    setTimeout(function() {
+        el.addClass('resultNum_animate');
+        el.empty();
+        el.append(result);
+    }, 10);
+}
+
+//----------------------Server request functions-----------------------//
 
 function calculateOperation() {
     console.log('in calculateOperation');
@@ -119,9 +133,7 @@ function getPreviousCalculations() {
         }
         if (response.length > 0) {
             //target h2 element to display most recent result
-            el = $('#resultOut');
-            el.empty();
-            el.append(response[0].result);
+            displayResult(response[0].result);
         }
     }).catch(function(err) {
         console.log(err);
@@ -158,9 +170,7 @@ function recalculate() {
     }).then(function(response) {
         console.log('back from GET', response);
         //append the server's response to the resultOut element
-        el = $('#resultOut');
-        el.empty();
-        el.append(response);
+        displayResult(response);
     }).catch(function(err) {
         console.log(err);
         alert('error sending recalculation request');
