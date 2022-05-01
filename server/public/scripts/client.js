@@ -50,8 +50,6 @@ function clearInputs() {
     console.log('in clearInputs');
     //clear input value
     $('#inputDisplay').val('');
-    //potentially clear the result element//may make more sense to not
-    //$('#resultOut').empty(); 
     //clear operator in toCalculate
     toCalculate.operator = "";
     //clear operation string
@@ -77,16 +75,25 @@ function parseOperationString() {
 }
 
 function displayResult(result) {
+    result = Number(result).toFixed(2);
     el = $('#resultOut');
     el.empty();
     el.append(`Result: <span class="resultNum_animate">${result}</span>`);
+
+    //play audio
+    new Audio('../sounds/kritter.mp3').play();
+
+    //change crocodile to animation for one cycle before changing back to still
+    el.css('background-image', 'var(--crocAnimate');
+    setTimeout(function() {
+        el.css('background-image', 'var(--crocStill');
+    }, 400);
 }
 
 //----------------------Server request functions-----------------------//
 
 function calculateOperation() {
-    console.log('in calculateOperation');
-    console.log('adding', toCalculate);
+    console.log('in calculateOperation', toCalculate);
     //make post request
     $.ajax({
         method: 'POST',
@@ -125,7 +132,7 @@ function getPreviousCalculations() {
         }
         if (response.length > 0) {
             //target h2 element to display most recent result
-            displayResult(response[0].result);
+            displayResult((response[0].result));
         }
     }).catch(function(err) {
         console.log(err);

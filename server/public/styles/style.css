@@ -6,33 +6,63 @@
 }
 
 :root {
-    --lightGreen: #A8E2A0;
-    --DarkGreen: #375A33;
+    --lightGreen: rgb(76, 135, 36);
+    --darkGreen: rgb(55, 98, 25);
+    --yellow: rgb(251, 227, 92, .6); 
+    --orange: rgb(228, 157, 82, .8);
+    --darkBrown: rgb(37, 20, 3);
+
+    --sunsetGrad: linear-gradient(var(--yellow), var(--orange));
+
+    --crocStill: url('../images/CrocStill.png'), url('../images/CrocBoard.gif'),var(--sunsetGrad);
+    --crocAnimate: url('../images/CrocAnimate.gif'), url('../images/CrocBoard.gif'), var(--sunsetGrad);
 }
 
 body {
-    background-color: bisque;
+    background-image: url('../images/swamp.png');
+    background-size: cover;
     font-family: 'Staatliches', sans-serif;
+    color: var(--darkBrown);
 }
 /*-------------------------Layout & Design Macro----------------------*/
-h1 {
+.pageHead {
     /* Layout */
     text-align: center;
-    padding: 20px;
+    padding: 10px;
+    margin: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
     /* Design */
     font-size: 3rem;
-    background-color: #375A33
+    background-image: var(--sunsetGrad);
+    border: 5px solid var(--orange);
+    border-radius: 10px;
 }
 
-h2 {
+.resultOutStyle {
    /* Layout */
    text-align: left;
-   font-size: 2rem;
-   padding-bottom: 30px;
-   padding-left: 20%;
+   font-size: 2.5rem;
+   padding-bottom: 100px;
+   padding-left: 5%;
    padding-top: 120px;
+   margin: 20px;
+   margin-left: 15%;
+   margin-right: 15%;
    /* Design */
+   background-image: var(--crocStill);
+   background-repeat: no-repeat;
+   background-position: 95% 0px;
+   border: 5px solid var(--orange);
+   border-radius: 10px;
 }
+
+.resultNum_animate {
+    animation-name: slideIn;
+    animation-duration: 1s;
+}
+
+
 
 .inputStyle {
    /* Layout */
@@ -40,8 +70,9 @@ h2 {
    margin-left: 25%;
    padding: 20px;
    /* Design */ 
-   border: 3px solid;
+   border: 5px solid var(--orange);
    border-radius: 10px;
+   background-image: var(--sunsetGrad);
 }
 
 .historyStyle {
@@ -50,18 +81,14 @@ h2 {
     margin-right: 25%;
     padding: 20px;
     /* Design */ 
-    border: 3px solid;
+    border: 5px solid var(--orange);
     border-radius: 10px;
+    background-image: var(--sunsetGrad);
 }
 /*-------------------------Layout & Design Micro----------------------*/
-    /*----------Result----------*/
-.resultNum_animate {
-    animation-name: slideIn;
-    animation-duration: 1s;
-}
 
     /*----------Inputs----------*/
-.inputDisplay {
+.inputDisplayStyle {
     /* Layout */
     width: 9.35rem;
     height: 5rem;
@@ -70,8 +97,10 @@ h2 {
     /* Design */ 
     font-family: inherit;
     font-size: 2rem;
+    color: var(--darkBrown);
+    border: 2px solid var(--darkGreen);
     border-radius: 5px;
-
+    background-image: var(--sunsetGrad);
 }
 
 
@@ -82,7 +111,10 @@ h2 {
     /* Design */ 
     font-family: inherit;
     font-size: 1.25rem;
+    color: var(--darkBrown);
+    border: 1px solid var(--darkGreen);
     border-radius: 5px;
+    background-color: var(--darkGreen);
     /* Animation */
     transition: transform 0.3s ease;
 }
@@ -94,7 +126,10 @@ h2 {
     /* Design */ 
     font-family: inherit;
     font-size: 1.25rem;
+    color: var(--darkBrown);
+    border: 1px solid var(--darkGreen);
     border-radius: 5px;
+    background-color: var(--darkGreen);
     /* Animation */
     transition: transform 0.3s ease;
 }
@@ -106,7 +141,10 @@ h2 {
     /* Design */ 
     font-family: inherit;
     font-size: 1.25rem;
+    color: var(--darkBrown);
+    border: 1px solid var(--darkGreen);
     border-radius: 5px;
+    background-color: var(--darkGreen);
     /* Animation */
     transition: transform 0.3s ease;
 }
@@ -120,14 +158,17 @@ h2 {
     /* Design */ 
     font-family: inherit;
     font-size: 1.25rem;
-    border: 2px solid;
+    border: 2px solid var(--darkGreen);
+    border-radius: 5px;
+    background-image: var(--sunsetGrad);
 }
 .calcHistory {
     /* Layout */
     margin: 5px;
     /* Design */ 
-    border: 1px solid;
+    border: 1px solid var(--darkGreen);
     border-radius: 5px;
+    background-color: var(--darkGreen);
     /* Animation */
     transition: transform 0.3s ease;
 }
@@ -142,21 +183,25 @@ td {
 /*-------------------------Animation----------------------*/
 .valueButtons:hover  {
     transform: translate(-3px, -3px);
+    background-color: var(--lightGreen);
 }
 
 .operatorButtons:hover, .clearButton:hover {
     transform: translate(3px, -3px);
+    background-color: var(--lightGreen);
 }
 
 .equalButton:hover{
     transform: scale(1.25);
+    background-color: var(--lightGreen);
 }
 
 .calcHistory:hover, .clearHistoryButton:hover  {
     transform: scale(1.1);
+    background-color: var(--lightGreen);
 }
 
 @keyframes slideIn {
-    from {padding-left: 60%; opacity: 0;}
-    to {padding-left: 0%; opacity: 1;}
+    from {padding-left: 45%; opacity: 0;}
+    to {padding-left: 0%; opacity: 1; background-image: none;}
 }
