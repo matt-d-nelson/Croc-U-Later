@@ -3,14 +3,18 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    border-radius: 10px;
+
 }
 
+    /* Variables */
 :root {
     --lightGreen: rgb(76, 135, 36);
     --darkGreen: rgb(55, 98, 25);
     --yellow: rgb(251, 227, 92, .6); 
     --orange: rgb(228, 157, 82, .8);
     --darkBrown: rgb(37, 20, 3);
+    --red: rgb(234, 134, 76);
 
     --sunsetGrad: linear-gradient(var(--yellow), var(--orange));
 
@@ -34,15 +38,14 @@ body {
     margin-right: 15%;
     /* Design */
     font-size: 3rem;
+    text-shadow: -2px 0 var(--orange), 0 2px var(--orange), 2px 0 var(--orange), 0 -2px var(--orange);
     background-image: var(--sunsetGrad);
     border: 5px solid var(--orange);
-    border-radius: 10px;
 }
 
 .resultOutStyle {
    /* Layout */
    text-align: left;
-   font-size: 2.5rem;
    padding-bottom: 100px;
    padding-left: 5%;
    padding-top: 120px;
@@ -50,14 +53,19 @@ body {
    margin-left: 15%;
    margin-right: 15%;
    /* Design */
+   font-size: 2.5rem;
+   text-shadow: -2px 0 var(--orange), 0 2px var(--orange), 2px 0 var(--orange), 0 -2px var(--orange);
    background-image: var(--crocStill);
    background-repeat: no-repeat;
    background-position: 95% 0px;
    border: 5px solid var(--orange);
-   border-radius: 10px;
 }
 
 .resultNum_animate {
+    /* Design */
+    color: var(--red);
+    text-shadow: -2px 0 var(--darkBrown), 0 2px var(--darkBrown), 2px 0 var(--darkBrown), 0 -2px var(--darkBrown);
+    /* Animation */
     animation-name: slideIn;
     animation-duration: 1s;
 }
@@ -71,7 +79,6 @@ body {
    padding: 20px;
    /* Design */ 
    border: 5px solid var(--orange);
-   border-radius: 10px;
    background-image: var(--sunsetGrad);
 }
 
@@ -82,7 +89,6 @@ body {
     padding: 20px;
     /* Design */ 
     border: 5px solid var(--orange);
-    border-radius: 10px;
     background-image: var(--sunsetGrad);
 }
 /*-------------------------Layout & Design Micro----------------------*/
@@ -162,6 +168,7 @@ body {
     border-radius: 5px;
     background-image: var(--sunsetGrad);
 }
+
 .calcHistory {
     /* Layout */
     margin: 5px;
@@ -173,35 +180,42 @@ body {
     transition: transform 0.3s ease;
 }
 
+/* for some reason, previous calculation td elements (created on line 132 in client.js)  
+don't inherit their parent's border. This is a quick fix. */
 td {
     border: inherit;
-    margin: inherit;
-    border-radius: inherit;
-    transition: inherit;
 }
+
 
 /*-------------------------Animation----------------------*/
 .valueButtons:hover  {
+    /* move element 3px to the left and up */
     transform: translate(-3px, -3px);
+    /* change background color */
     background-color: var(--lightGreen);
 }
 
 .operatorButtons:hover, .clearButton:hover {
+    /* move element 3px to the right and up */
     transform: translate(3px, -3px);
     background-color: var(--lightGreen);
 }
 
 .equalButton:hover{
+    /* scale element size by 1.25*/
     transform: scale(1.25);
     background-color: var(--lightGreen);
 }
 
 .calcHistory:hover, .clearHistoryButton:hover  {
+    /* scale element size by 1.1*/
     transform: scale(1.1);
     background-color: var(--lightGreen);
 }
 
 @keyframes slideIn {
+    /* move element from the right into place on the left */
+    /* element opacity increases with movement*/
     from {padding-left: 45%; opacity: 0;}
-    to {padding-left: 0%; opacity: 1; background-image: none;}
+    to {padding-left: 0%; opacity: 1;}
 }

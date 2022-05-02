@@ -5,34 +5,37 @@ const router = express.Router();
 //"Database" array to push operations to
 let previousOperations = [];
 
-//Router configuration
+//----------------------Router Configuration-----------------------//
 
     //calculate
+    //GET
 router.get('/calculate', (req, res) => {
     console.log('calculate GET');
     res.send(previousOperations);
 })
-
+    //POST
 router.post('/calculate', (req, res) => {
     console.log('calculate POST', req.body);
     performCalculation(req.body)
     res.sendStatus(200);
 })
-
+    //DELETE
 router.delete('/calculate', (req, res) => {
     console.log('calculate DELETE');
+    //set previousOperations to an empty array
     previousOperations = [];
     res.sendStatus(200);
 })
 
     //recalculate
+    //POST
 router.post('/recalculate', (req, res) => {
     console.log('recalculate GET',req.body);
     //send the result property of the requested index of the previousOperations array
     res.send(previousOperations[req.body.index].result);
 })
 
-//Functions
+//----------------------Functions----------------------//
 function performCalculation(calculation) {
     //declare variable to store result
     let returnResult = -1;
@@ -59,5 +62,5 @@ function performCalculation(calculation) {
     previousOperations.unshift(calculation);
 }
 
-//Exports
+//----------------------Exports----------------------//
 module.exports = router;

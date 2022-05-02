@@ -10,7 +10,6 @@ function onReady() {
     $('#clearButton').on('click', clearInputs);
     $('#clearHistoryButton').on('click', clearHistory);
     $('#calculateButton').on('click', parseOperationString);
-
     $('#previousCalculations').on('click', '.calcHistory', recalculate);
 
     getPreviousCalculations();
@@ -28,16 +27,18 @@ let operationString = "";
 
 function defineOperator() {
     console.log('in defineOperator');
+    //store op value from operator button that was selected
     let currentOperator = $(this).data('op');
     //set the operator in the toCalculate object
     toCalculate.operator = currentOperator;
-    //concatinate operation string
+    //concatinate operationString with selected operator
     operationString += currentOperator;
     updateInput();
 }
 
 function defineNumber() {
     console.log('in defineNumber');
+    //concatinate operationString with the val of the selected button
     operationString += $(this).data('val');
     updateInput();
 }
@@ -59,13 +60,15 @@ function clearInputs() {
 function parseOperationString() {
     //split the operationString on the operator
     let splitOp = operationString.split(toCalculate.operator);
-    //ensure that there are only two values and that they are numbers
+    //ensure that there are only two values and that they are numbers 
+    //isNan('') returns true, so splitOp.includes('') is used to ensure there are no empty values
     if (splitOp.length != 2 || splitOp.includes('') || isNaN(splitOp[0]) || isNaN(splitOp[0])) {
+        //alert the user that the entry couldn't be processed and clear inputs
         alert('Invalid entry. Please enter two digits separated by one operator.');
         clearInputs();
         return;
     }
-    //set split values in toCalculate object
+    //define toCalculate values as the splitOp array indices
     toCalculate.numerator = splitOp[0];
     toCalculate.denominator = splitOp[1];
     console.log('in parse', toCalculate);
@@ -75,15 +78,17 @@ function parseOperationString() {
 }
 
 function displayResult(result) {
+    //shorten number after decimal place to two characters
     result = Number(result).toFixed(2);
+    //target resultOut element, empty it, and fill it with the result
     el = $('#resultOut');
     el.empty();
     el.append(`Result: <span class="resultNum_animate">${result}</span>`);
 
-    //play audio
+    //play audio clip
     new Audio('../sounds/kritter.mp3').play();
 
-    //change crocodile to animation for one cycle before changing back to still
+    //change crocodile to animate for one animation cycle before changing back to still
     el.css('background-image', 'var(--crocAnimate');
     setTimeout(function() {
         el.css('background-image', 'var(--crocStill');
@@ -94,7 +99,7 @@ function displayResult(result) {
 
 function calculateOperation() {
     console.log('in calculateOperation', toCalculate);
-    //make post request
+    //make post request with the toCalculate object
     $.ajax({
         method: 'POST',
         url: '/calculate',
@@ -130,8 +135,9 @@ function getPreviousCalculations() {
                 ${response[i].denominator}
             </td></tr>`); //= ${response[i].result} //removed for stretch goals
         }
+        //if there are any responses
         if (response.length > 0) {
-            //target h2 element to display most recent result
+            //display most recent result
             displayResult((response[0].result));
         }
     }).catch(function(err) {
@@ -142,6 +148,7 @@ function getPreviousCalculations() {
 
 function clearHistory() {
     console.log('in clear history');
+    //send a delete request
     $.ajax({
         method: 'DELETE',
         url: '/calculate'
@@ -161,14 +168,14 @@ function recalculate() {
         index: Number($(this).data('id'))
     }
     console.log('index to recalculate:', indexToCalculate);
-    //send a post request to the server with the index object
+    //send a post request to the server with the index of the object to recalculate
     $.ajax({
         method: 'POST',
         url: '/recalculate',
         data: indexToCalculate
     }).then(function(response) {
         console.log('back from GET', response);
-        //append the server's response to the resultOut element
+        //display the result of the recalculation
         displayResult(response);
     }).catch(function(err) {
         console.log(err);
