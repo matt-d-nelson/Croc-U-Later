@@ -7,8 +7,6 @@
 
 ## Interface with a Crocodile that can perform basic arithmetic!
 
-## Screen Shot
-
 ![CroculatorExample](https://user-images.githubusercontent.com/98720000/166307643-af50d168-7a1f-47b9-9a9d-0f5fd689f98c.gif)
 
 ## Usage
