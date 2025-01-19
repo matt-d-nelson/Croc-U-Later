@@ -1,4 +1,3 @@
-
 ![REPO SIZE](https://img.shields.io/github/repo-size/scottbromander/the_marketplace.svg?style=flat-square)
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
@@ -10,7 +9,8 @@
 ![CroculatorExample](https://user-images.githubusercontent.com/98720000/166307643-af50d168-7a1f-47b9-9a9d-0f5fd689f98c.gif)
 
 ## Visit the hosted app:
-https://morning-sierra-16526.herokuapp.com/
+
+https://croculator-1d5ba8e7ff0b.herokuapp.com/
 
 ## Usage
 
@@ -18,7 +18,6 @@ https://morning-sierra-16526.herokuapp.com/
 2. Click the "=" button to caculate the equation.
 3. Click a previously calculated equation to display its result.
 4. Click the "Clear History" button to remove all previously calculated equations.
-
 
 ## Built With
 
@@ -29,7 +28,9 @@ https://morning-sierra-16526.herokuapp.com/
 - Aseprite
 
 ## Acknowledgement
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. 
+
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
 
 ## Support
+
 If you have suggestions or issues, please email me at matt.dav.nelson@gmail.com
