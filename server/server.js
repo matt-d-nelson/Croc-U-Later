@@ -5,7 +5,7 @@ const calcRouter = require("./modules/calculator/calculator");
 
 //Constants
 const app = express();
-const port = 5001;
+const port = process.env.PORT || 5001;
 
 //app configuration
 app.listen(port, () => {
